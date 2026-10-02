@@ -1,15 +1,26 @@
 /* ---------- Snake Game ---------- */
+
+/* Page full screen, scroll aagaadhu */
 .snk-page {
-  min-height: 100vh;
+  position: fixed;
+  inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #111;
+  overflow: hidden;
+  touch-action: none;          /* swipe-ku page scroll / refresh aagama */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .snk-card {
-  width: 340px;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
   background: #050505;
   border: 1px solid #333;
   border-radius: 16px;
@@ -18,8 +29,8 @@
 }
 
 .snk-title {
-  margin: 0 0 16px;
-  font-size: 26px;
+  margin: 0;
+  font-size: 22px;
   font-weight: 800;
   letter-spacing: 1px;
   color: #22ff55;
@@ -27,22 +38,28 @@
 }
 
 .snk-icon {
-  font-size: 30px;
+  font-size: 24px;
 }
 
+/* Board: screen size-ku thakka thaanaave sizing */
 .snk-board-wrap {
-  position: relative;      /* game over overlay-kku */
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
-  border: 1px solid #555;
+  position: relative;
+  width: max(200px, min(calc(100vw - 48px), calc(100vh - 300px), 420px));
+  width: max(200px, min(calc(100vw - 48px), calc(100dvh - 300px), 420px));
+  aspect-ratio: 1 / 1;
+  background: #ffffff;            /* lighter board background */
+  border: 1px solid #6b8f7c;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .snk-board-wrap svg {
   display: block;
+  width: 100%;
+  height: 100%;
 }
 
-/* Game over center-la */
+/* Paused / Game over center-la */
 .snk-over {
   position: absolute;
   inset: 0;
@@ -50,7 +67,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .snk-over h2 {
@@ -60,37 +77,105 @@
   text-shadow: 0 0 10px #ff0000;
 }
 
+.snk-over h2.pause {
+  color: #22ff55;
+  text-shadow: 0 0 10px #22ff55;
+}
+
 .snk-over p {
   margin: 0;
   font-size: 18px;
   color: #fff;
 }
 
+.snk-over small {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #bbb;
+}
+
+/* Score | Pause-Resume | Restart */
 .snk-footer {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: 24px;
-  margin-top: 18px;
+  gap: 10px;
 }
 
 .snk-score {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: #fff;
+  white-space: nowrap;
 }
 
 .snk-btn {
-  padding: 10px 22px;
-  font-size: 15px;
+  padding: 8px 14px;
+  font-size: 14px;
   font-weight: 700;
   color: #fff;
   background: #c0392b;
   border: 1px solid #fff;
   border-radius: 8px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .snk-btn:hover {
   background: #e74c3c;
 }
+
+.snk-btn:active {
+  transform: scale(0.96);
+}
+
+/* Pause / Resume button (green) */
+.snk-btn.pause {
+  background: #1f8a3c;
+}
+
+.snk-btn.pause:hover {
+  background: #28a84b;
+}
+
+.snk-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Touch arrow buttons (keezha) */
+.snk-dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 58px);
+  grid-template-areas:
+    ". up ."
+    "left down right";
+  gap: 6px;
+  justify-content: center;
+}
+
+.snk-pad {
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  color: #22ff55;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 12px;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.snk-pad:active {
+  background: #46925e;
+  box-shadow: 0 0 10px #7da386;
+}
+
+.snk-pad.up { grid-area: up; }
+.snk-pad.left { grid-area: left; }
+.snk-pad.down { grid-area: down; }
+.snk-pad.right { grid-area: right; }
