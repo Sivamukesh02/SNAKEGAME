@@ -282,7 +282,7 @@ function Proj() {
               {/* Board background: konjam lighter */}
               <radialGradient id="boardGrad" cx="50%" cy="50%" r="75%">
                 <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="100%" stopColor="#1c3128" />
+                <stop offset="100%" stopColor="#515a56" />
               </radialGradient>
 
               {/* Apple gradient */}
