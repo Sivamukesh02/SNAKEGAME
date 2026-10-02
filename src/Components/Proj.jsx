@@ -281,7 +281,7 @@ function Proj() {
             <defs>
               {/* Board background: konjam lighter */}
               <radialGradient id="boardGrad" cx="50%" cy="50%" r="75%">
-                <stop offset="0%" stopColor="#2e4b3e" />
+                <stop offset="0%" stopColor="#ffffff" />
                 <stop offset="100%" stopColor="#1c3128" />
               </radialGradient>
 
